@@ -7,9 +7,11 @@ public class movement : MonoBehaviour
     [SerializeField] float speed;
     private Rigidbody rb;
     [SerializeField] float jumpForce;
+    private Vector3 spawnPos;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        spawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -23,6 +25,11 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {     
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);   
+        }
+
+        if (transform.position.y < -1f)
+        {
+            transform.position = spawnPos;
         }
     }
     
