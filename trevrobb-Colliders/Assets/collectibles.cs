@@ -13,25 +13,25 @@ public class collectibles : MonoBehaviour
         range = (int)Random.Range(0, 3);
         Debug.Log(range);
         spawnPos = this.transform.position;
-        collectibleSpeed = 1f;
+        collectibleSpeed = 1.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
     private void FixedUpdate()
     {
         if (range == 0)
         {
-            transform.Translate(collectibleSpeed * Vector3.forward);
+            transform.Translate(collectibleSpeed * Vector3.forward );
             this.GetComponent<Renderer>().material.color = Color.blue;
         }
         else if (range == 1)
         {
-            transform.Translate(collectibleSpeed * Vector3.right);
+            transform.Translate(collectibleSpeed * Vector3.right );
             this.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (range == 2)
@@ -39,6 +39,7 @@ public class collectibles : MonoBehaviour
             transform.Translate(collectibleSpeed * Vector3.left);
             this.GetComponent<Renderer>().material.color = Color.green;
         }
+
         if (transform.position.x > 120f)
         {
             transform.position = new Vector3(-77f, transform.position.y, transform.position.z);
@@ -55,15 +56,6 @@ public class collectibles : MonoBehaviour
         {
             transform.position = spawnPos;
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(this.gameObject);
-        }
-        
     }
 
     private void OnTriggerEnter(Collider other)
