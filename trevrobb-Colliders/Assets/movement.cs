@@ -8,10 +8,13 @@ public class movement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] float jumpForce;
     private Vector3 spawnPos;
+
+    private bool notJumping;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         spawnPos = transform.position;
+        notJumping = true;
     }
 
     // Update is called once per frame
@@ -22,9 +25,15 @@ public class movement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && notJumping)
         {     
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);   
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            notJumping = false;
+        }
+
+        if (transform.position.y <= 2.5f)
+        {
+            notJumping = true;
         }
 
         if (transform.position.y < -1f)

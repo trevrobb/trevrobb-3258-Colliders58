@@ -18,27 +18,39 @@ public class collectibles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+    }
+
+    private void FixedUpdate()
+    {
         if (range == 0)
         {
             transform.Translate(collectibleSpeed * Vector3.forward);
+            this.GetComponent<Renderer>().material.color = Color.blue;
         }
         else if (range == 1)
         {
             transform.Translate(collectibleSpeed * Vector3.right);
+            this.GetComponent<Renderer>().material.color = Color.black;
         }
         else if (range == 2)
         {
             transform.Translate(collectibleSpeed * Vector3.left);
+            this.GetComponent<Renderer>().material.color = Color.green;
         }
-        if (transform.position.x > 102f)
+        if (transform.position.x > 120f)
         {
             transform.position = new Vector3(-77f, transform.position.y, transform.position.z);
         }
-        if (transform.position.x < -80f)
+        if (transform.position.x < -120f)
         {
             transform.position = new Vector3(102f, transform.position.y, transform.position.z);
         }
         if (transform.position.y < -1f)
+        {
+            transform.position = spawnPos;
+        }
+        if (transform.position.z > 2800f)
         {
             transform.position = spawnPos;
         }
