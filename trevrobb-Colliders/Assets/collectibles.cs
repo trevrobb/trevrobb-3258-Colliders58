@@ -13,6 +13,7 @@ public class collectibles : MonoBehaviour
         range = (int)Random.Range(0, 3);
         Debug.Log(range);
         spawnPos = this.transform.position;
+        collectibleSpeed = 1f;
     }
 
     // Update is called once per frame
